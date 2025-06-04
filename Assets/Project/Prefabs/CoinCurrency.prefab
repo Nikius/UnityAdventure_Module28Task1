@@ -111,9 +111,11 @@ PrefabInstance:
     - target: {fileID: 2676724155136287601, guid: 1f801bf2b228c664a831f5d0dc664228,
         type: 3}
       propertyPath: m_Name
-      value: Currency
+      value: CoinCurrency
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4956197327969004208, guid: 1f801bf2b228c664a831f5d0dc664228, type: 3}
+    - {fileID: 7035739776606875960, guid: 1f801bf2b228c664a831f5d0dc664228, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

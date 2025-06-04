@@ -289,11 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f10a0a6b4a44cfaad0334c1a4e75dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walletView: {fileID: 1612279957}
-  _currenciesPrefabs:
-  - {fileID: 7452622886503482170, guid: f1580d477fd1006409863c1616eb61dd, type: 3}
-  - {fileID: 7452622886503482170, guid: f525df161f91e694880afcb8a7993ce2, type: 3}
-  - {fileID: 7452622886503482170, guid: f29e9ae18a235d3449a84af3844ebc2f, type: 3}
+  _walletView: {fileID: 1612279960}
 --- !u!4 &1151010496
 Transform:
   m_ObjectHideFlags: 0
@@ -489,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612279958}
   - component: {fileID: 1612279959}
+  - component: {fileID: 1612279960}
   m_Layer: 5
   m_Name: Wallet
   m_TagString: Untagged
@@ -541,6 +538,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1612279960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612279957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8824b061c8734440b910a0eabea8c95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currenciesPrefabs:
+  - {fileID: 1054042475691628210, guid: f1580d477fd1006409863c1616eb61dd, type: 3}
+  - {fileID: 1054042475691628210, guid: f525df161f91e694880afcb8a7993ce2, type: 3}
+  - {fileID: 1054042475691628210, guid: f29e9ae18a235d3449a84af3844ebc2f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

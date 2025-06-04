@@ -113,6 +113,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnergyCurrency
       objectReference: {fileID: 0}
+    - target: {fileID: 3245490312481374008, guid: 1f801bf2b228c664a831f5d0dc664228,
+        type: 3}
+      propertyPath: _iconSprite
+      value: 
+      objectReference: {fileID: 21300052, guid: 1eaee135ce037439d925cee5e41ce026,
+        type: 3}
+    - target: {fileID: 3245490312481374008, guid: 1f801bf2b228c664a831f5d0dc664228,
+        type: 3}
+      propertyPath: _currencyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4956197327969004208, guid: 1f801bf2b228c664a831f5d0dc664228,
         type: 3}
       propertyPath: currencyType
@@ -124,7 +135,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300052, guid: 1eaee135ce037439d925cee5e41ce026,
         type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 7035739776606875960, guid: 1f801bf2b228c664a831f5d0dc664228,
+        type: 3}
+      propertyPath: _currencyType
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4956197327969004208, guid: 1f801bf2b228c664a831f5d0dc664228, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

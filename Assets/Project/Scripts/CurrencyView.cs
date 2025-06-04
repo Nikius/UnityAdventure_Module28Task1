@@ -13,29 +13,32 @@ namespace Project.Scripts
         
         [SerializeField] private Image _iconImage;
         [SerializeField] private Sprite _iconSprite;
+        [SerializeField] private CurrencyTypesEnum _currencyType;
         
         [SerializeField] private TMP_Text _valueLabel;
 
         [SerializeField] private Button _addButton;
-        [SerializeField] private Currency _currency;
+        
+        public Currency Currency;
 
         private void Awake()
         {
+            Currency = new Currency(_currencyType);
             _iconImage.sprite = _iconSprite;
             SetValue(0);
             _addButton.onClick.AddListener(IncreaseBalance);
-            _currency.OnUpdated += UpdateLabel;
+            Currency.OnUpdated += UpdateLabel;
         }
 
         private void OnDestroy()
         {
             _addButton.onClick.RemoveListener(IncreaseBalance);
-            _currency.OnUpdated -= UpdateLabel;
+            Currency.OnUpdated -= UpdateLabel;
         }
         
         private void IncreaseBalance()
         {
-            _currency.IncreaseBalance(AddAmount);
+            Currency.IncreaseBalance(AddAmount);
         }
 
         private void SetValue(int value)
@@ -46,7 +49,7 @@ namespace Project.Scripts
 
         private void UpdateLabel()
         {
-            SetValue(_currency.CurrentAmount);
+            SetValue(Currency.CurrentAmount);
         }
     }
 }

@@ -3,20 +3,19 @@ using UnityEngine;
 
 namespace Project.Scripts
 {
-    public class Currency: MonoBehaviour
+    public class Currency
     {
         public event Action OnUpdated;
         
-        public CurrencyTypesEnum currencyType;
+        public readonly CurrencyTypesEnum CurrencyType;
         
         private int _currentAmount;
         
         public int CurrentAmount => _currentAmount;
 
-        public void Initialize(int startAmount)
+        public Currency(CurrencyTypesEnum currencyType)
         {
-            _currentAmount = startAmount;
-            OnUpdated?.Invoke();
+            CurrencyType = currencyType;
         }
 
         public void IncreaseBalance(int value)
