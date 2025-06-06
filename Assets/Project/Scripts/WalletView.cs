@@ -7,21 +7,24 @@ namespace Project.Scripts
     {
         [SerializeField] private List<CurrencyView> _currenciesPrefabs;
         
-        private readonly Dictionary<CurrencyTypesEnum, Currency> _currencies = new();
-
-        private void Awake()
-        {
-            foreach (CurrencyView currencyPrefab in _currenciesPrefabs)
-            {
-                CurrencyView currencyView = Instantiate(currencyPrefab, transform).GetComponent<CurrencyView>();
-                _currencies.Add(currencyView.Currency.CurrencyType, currencyView.Currency);
-            }
-        }
+        private WalletService _walletService;
         
-        public void DecreaseBalance(CurrencyTypesEnum type, int amount)
+        public void Initialize(WalletService walletService)
         {
-            if (_currencies.TryGetValue(type, out Currency currency))
-                currency.DecreaseBalance(amount);
+            _walletService = walletService;
+            
+            foreach (KeyValuePair<CurrencyTypesEnum, Currency> keyValuePair in _walletService.Currencies)
+                ShowCurrencyUI(keyValuePair);
+        }
+
+        private void ShowCurrencyUI(KeyValuePair<CurrencyTypesEnum, Currency> currencyKvp)
+        {
+            foreach (CurrencyView currencyViewPrefab in _currenciesPrefabs)
+                if (currencyViewPrefab.currencyType == currencyKvp.Key)
+                {
+                    CurrencyView currencyView = Instantiate(currencyViewPrefab, transform).GetComponent<CurrencyView>();
+                    currencyView.Initialize(currencyKvp.Value);
+                }
         }
     }
 }

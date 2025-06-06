@@ -9,36 +9,36 @@ namespace Project.Scripts
     {
         private const int MaxViewValue = 999999;
         private const int MinViewValue = 0;
-        private const int AddAmount = 100;
         
         [SerializeField] private Image _iconImage;
         [SerializeField] private Sprite _iconSprite;
-        [SerializeField] private CurrencyTypesEnum _currencyType;
-        
+
         [SerializeField] private TMP_Text _valueLabel;
-
         [SerializeField] private Button _addButton;
-        
-        public Currency Currency;
 
-        private void Awake()
-        {
-            Currency = new Currency(_currencyType);
-            _iconImage.sprite = _iconSprite;
-            SetValue(0);
-            _addButton.onClick.AddListener(IncreaseBalance);
-            Currency.OnUpdated += UpdateLabel;
-        }
+        public CurrencyTypesEnum currencyType;
+        
+        private Currency _currency;
 
         private void OnDestroy()
         {
             _addButton.onClick.RemoveListener(IncreaseBalance);
-            Currency.OnUpdated -= UpdateLabel;
+            _currency.OnUpdated -= UpdateLabel;
         }
-        
+
+        public void Initialize(Currency currency)
+        {
+            _currency = currency;
+            _currency.OnUpdated += UpdateLabel;
+            
+            _iconImage.sprite = _iconSprite;
+            SetValue(_currency.CurrentAmount);
+            _addButton.onClick.AddListener(IncreaseBalance);
+        }
+
         private void IncreaseBalance()
         {
-            Currency.IncreaseBalance(AddAmount);
+            _currency.TopUpButtonListener();
         }
 
         private void SetValue(int value)
@@ -49,7 +49,7 @@ namespace Project.Scripts
 
         private void UpdateLabel()
         {
-            SetValue(Currency.CurrentAmount);
+            SetValue(_currency.CurrentAmount);
         }
     }
 }

@@ -121,6 +121,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3245490312481374008, guid: 1f801bf2b228c664a831f5d0dc664228,
         type: 3}
+      propertyPath: currencyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245490312481374008, guid: 1f801bf2b228c664a831f5d0dc664228,
+        type: 3}
       propertyPath: _currencyType
       value: 2
       objectReference: {fileID: 0}

@@ -5,6 +5,8 @@ namespace Project.Scripts
 {
     public class Currency
     {
+        private const int TopUpAmount = 100;
+        
         public event Action OnUpdated;
         
         public readonly CurrencyTypesEnum CurrencyType;
@@ -16,6 +18,11 @@ namespace Project.Scripts
         public Currency(CurrencyTypesEnum currencyType)
         {
             CurrencyType = currencyType;
+        }
+
+        public void TopUpButtonListener()
+        {
+            IncreaseBalance(TopUpAmount);
         }
 
         public void IncreaseBalance(int value)

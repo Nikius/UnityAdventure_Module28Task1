@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _walletView: {fileID: 1612279960}
+  _currencyTypes: 000000000100000002000000
 --- !u!4 &1151010496
 Transform:
   m_ObjectHideFlags: 0
