@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Project.Scripts
@@ -8,13 +9,29 @@ namespace Project.Scripts
         [SerializeField] private List<CurrencyView> _currenciesPrefabs;
         
         private WalletService _walletService;
-        
+        private readonly List<CurrencyView> _currencyViews = new();
+
+        private void OnDestroy()
+        {
+            foreach (CurrencyView currencyView in _currencyViews)
+                currencyView.OnAddButtonClicked -= IncreaseBalance;
+        }
+
         public void Initialize(WalletService walletService)
         {
             _walletService = walletService;
             
             foreach (KeyValuePair<CurrencyTypesEnum, Currency> keyValuePair in _walletService.Currencies)
                 ShowCurrencyUI(keyValuePair);
+
+            foreach (CurrencyView currencyView in _currencyViews)
+                currencyView.OnAddButtonClicked += IncreaseBalance;
+        }
+
+        private void IncreaseBalance(CurrencyTypesEnum currencyViewCurrencyType)
+        {
+            if (_walletService.Currencies.TryGetValue(currencyViewCurrencyType, out Currency currency))
+                currency.TopUpButtonListener();
         }
 
         private void ShowCurrencyUI(KeyValuePair<CurrencyTypesEnum, Currency> currencyKvp)
@@ -24,6 +41,7 @@ namespace Project.Scripts
                 {
                     CurrencyView currencyView = Instantiate(currencyViewPrefab, transform).GetComponent<CurrencyView>();
                     currencyView.Initialize(currencyKvp.Value);
+                    _currencyViews.Add(currencyView);
                 }
         }
     }

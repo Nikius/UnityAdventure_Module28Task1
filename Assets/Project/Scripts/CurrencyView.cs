@@ -10,6 +10,8 @@ namespace Project.Scripts
         private const int MaxViewValue = 999999;
         private const int MinViewValue = 0;
         
+        public event Action<CurrencyTypesEnum> OnAddButtonClicked;
+        
         [SerializeField] private Image _iconImage;
         [SerializeField] private Sprite _iconSprite;
 
@@ -22,7 +24,7 @@ namespace Project.Scripts
 
         private void OnDestroy()
         {
-            _addButton.onClick.RemoveListener(IncreaseBalance);
+            _addButton.onClick.RemoveListener(OnAddButtonClick);
             _currency.OnUpdated -= UpdateLabel;
         }
 
@@ -33,12 +35,12 @@ namespace Project.Scripts
             
             _iconImage.sprite = _iconSprite;
             SetValue(_currency.CurrentAmount);
-            _addButton.onClick.AddListener(IncreaseBalance);
+            _addButton.onClick.AddListener(OnAddButtonClick);
         }
 
-        private void IncreaseBalance()
+        private void OnAddButtonClick()
         {
-            _currency.TopUpButtonListener();
+            OnAddButtonClicked?.Invoke(currencyType);
         }
 
         private void SetValue(int value)
