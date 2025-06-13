@@ -31,7 +31,7 @@ namespace Project.Scripts
         private void IncreaseBalance(CurrencyTypesEnum currencyViewCurrencyType)
         {
             if (_walletService.Currencies.TryGetValue(currencyViewCurrencyType, out Currency currency))
-                currency.TopUpButtonListener();
+                _walletService.IncreaseBalance(currency.CurrencyType);
         }
 
         private void ShowCurrencyUI(KeyValuePair<CurrencyTypesEnum, Currency> currencyKvp)
